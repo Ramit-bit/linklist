@@ -1,0 +1,141 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.prev = None
+        self.next = None
+
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None
+
+    def add_first(self, data):
+        new = Node(data)
+        if self.head:
+            new.next = self.head
+            self.head.prev = new
+        self.head = new
+
+    def add_last(self, data):
+        new = Node(data)
+        if self.head is None:
+            self.head = new
+            return
+        temp = self.head
+        while temp.next:
+            temp = temp.next
+        temp.next = new
+        new.prev = temp
+
+    def add_middle(self, data, pos):
+        if pos == 1:
+            self.add_first(data)
+            return
+        temp = self.head
+        for i in range(pos - 2):
+            if temp is None:
+                print("Invalid position")
+                return
+            temp = temp.next
+        if temp is None:
+            print("Invalid position")
+            return
+        new = Node(data)
+        new.next = temp.next
+        new.prev = temp
+        if temp.next:
+            temp.next.prev = new
+        temp.next = new
+
+    def delete_first(self):
+        if self.head:
+            self.head = self.head.next
+            if self.head:
+                self.head.prev = None
+
+    def delete_last(self):
+        if self.head is None:
+            return
+        temp = self.head
+        while temp.next:
+            temp = temp.next
+        if temp.prev:
+            temp.prev.next = None
+        else:
+            self.head = None
+
+    def delete_middle(self, pos):
+        if self.head is None:
+            return
+        if pos == 1:
+            self.delete_first()
+            return
+        temp = self.head
+        for i in range(pos - 1):
+            if temp is None:
+                print("Invalid position")
+                return
+            temp = temp.next
+        if temp is None:
+            print("Invalid position")
+            return
+        if temp.prev:
+            temp.prev.next = temp.next
+        if temp.next:
+            temp.next.prev = temp.prev
+
+    def reverse(self):
+        temp = self.head
+        prev = None
+        while temp:
+            prev = temp.prev
+            temp.prev = temp.next
+            temp.next = prev
+            temp = temp.prev
+        if prev:
+            self.head = prev.prev
+
+    def display(self):
+        temp = self.head
+        while temp:
+            print(temp.data, end=" <-> ")
+            temp = temp.next
+        print("None")
+
+
+dll = DoublyLinkedList()
+
+print("Enter 7 nodes:")
+for i in range(7):
+    dll.add_last(int(input()))
+
+print("Original list:")
+dll.display()
+
+dll.add_first(99)
+print("After adding at first:")
+dll.display()
+
+dll.add_last(10)
+print("After adding at last:")
+dll.display()
+
+dll.add_middle(9, 2)
+print("After adding at middle:")
+dll.display()
+
+dll.delete_first()
+print("After deleting first:")
+dll.display()
+
+dll.delete_last()
+print("After deleting last:")
+dll.display()
+
+dll.delete_middle(1)
+print("After deleting middle:")
+dll.display()
+
+dll.reverse()
+print("After reversing:")
+dll.display()
