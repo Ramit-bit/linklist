@@ -99,7 +99,7 @@ l = LinkedList()
 
 print("Enter 7 nodes:")
 for i in range(7):
-    l.add_last(int(input()))
+    l.add_last(input())
 
 print("Original linked list:")
 l.display()

@@ -115,7 +115,7 @@ dll = DoublyLinkedList()
 
 print("Enter 7 nodes:")
 for i in range(7):
-    dll.add_last(int(input()))
+    dll.add_last(input())
 
 print("Original list:")
 dll.display()
