@@ -85,6 +85,14 @@ class LinkedList:
             print(temp.data, end=" -> ")
             temp = temp.next
         print("None")
+    def length(self):
+        count = 0
+        temp = self.head
+        while temp:
+            count += 1
+            temp = temp.next
+        print(count)
+        return
 
 
 l = LinkedList()
@@ -123,3 +131,4 @@ l.display()
 l.reverse()
 print("After reversing:")
 l.display() 
+l.length()

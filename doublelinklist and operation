@@ -101,6 +101,14 @@ class DoublyLinkedList:
             print(temp.data, end=" <-> ")
             temp = temp.next
         print("None")
+    def length(self):
+        count = 0
+        temp = self.head
+        while temp:
+            count += 1
+            temp = temp.next
+        print(count)
+        return 
 
 
 dll = DoublyLinkedList()
@@ -139,3 +147,4 @@ dll.display()
 dll.reverse()
 print("After reversing:")
 dll.display()
+dll.length()

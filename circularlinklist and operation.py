@@ -112,14 +112,23 @@ class CircularLinkedList:
             temp = temp.next
             if temp == self.head:
                 break
-        
+    def length(self):
+        if self.head is None:
+            return 0
+        count = 1
+        temp = self.head
+        while temp.next != self.head:
+            count += 1
+            temp = temp.next
+        print(count)    
+        return 
 
 
 cll = CircularLinkedList()
 
 print("Enter 7 nodes:")
 for i in range(7):
-    cll.add_last(int(input()))
+    cll.add_last(input())
 
 print("Original circular linked list:")
 cll.display()
@@ -152,3 +161,4 @@ cll.reverse()
 
 cll.display()
 print("reversed the list\n")
+cll.length()
